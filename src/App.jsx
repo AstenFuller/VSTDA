@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 const FirstPanel = (props) => (
-    <div className={props.hide ? 'panel panel-info': 'hide'}>
-      <h4>Welcome to Very Simple Todo App!</h4>
-      <p>Get started by adding a new Todo on the left.</p>
-    </div>
+  <div className={props.hide ? 'panel panel-info' : 'hide'}>
+    <h4>Welcome to Very Simple Todo App!</h4>
+    <p>Get started by adding a new Todo on the left.</p>
+  </div>
 );
 
 const Heading = () => (
@@ -15,47 +15,46 @@ const Heading = () => (
 );
 
 const LowPriority = (props) => (
-    <div className={props.hideItem ? 'panel panel-success' : 'hide'}>
-      <div className={props.completed}>
-       <input type="checkbox" id={props.id} onClick={props.checkBox} />
-         {props.item}
-        <div className="icon">
-          <i className="fas fa-edit" id={props.id} onClick={props.edit}></i>
-          <i className="fas fa-trash-alt" id={props.id} onClick={props.delete}></i>
-        </div>
-        </div>
-    </div>  
-  );
-
-const MediumPriority = (props) => (
-    <div className={props.hideItem ? 'panel panel-warning' : 'hide'}>
-      <div className={props.completed}>
-       <input type="checkbox" id={props.id} onClick={props.checkBox} />
-         {props.item}
-        <div className="icon">
-          <i className="fas fa-edit" id={props.id} onClick={props.edit}></i>
-          <i className="fas fa-trash-alt" id={props.id} onClick={props.delete}></i>
-        </div>
-        </div>
-    </div>  
-  );
-
-const HighPriority = (props) => (
-    <div className={props.hideItem ? 'panel panel-danger' : 'hide'}>
-      <div className={props.completed}>
-       <input type="checkbox" id={props.id} onClick={props.checkBox} />
-         {props.item}
-        <div className="icon">
-          <i className="fas fa-edit" id={props.id} onClick={props.edit}></i>
-          <i className="fas fa-trash-alt" id={props.id} onClick={props.delete}></i>
-        </div>
-        </div>
-    </div>  
+  <div className={props.hideItem ? 'panel panel-success' : 'hide'}>
+    <div className={props.completed}>
+      <input type="checkbox" id={props.id} onClick={props.checkBox} />
+      {props.item}
+      <div className="icon">
+        <i className="fas fa-edit" id={props.id} onClick={props.edit}></i>
+        <i className="fas fa-trash-alt" id={props.id} onClick={props.delete}></i>
+      </div>
+    </div>
+  </div>
 );
 
+const MediumPriority = (props) => (
+  <div className={props.hideItem ? 'panel panel-warning' : 'hide'}>
+    <div className={props.completed}>
+      <input type="checkbox" id={props.id} onClick={props.checkBox} />
+      {props.item}
+      <div className="icon">
+        <i className="fas fa-edit" id={props.id} onClick={props.edit}></i>
+        <i className="fas fa-trash-alt" id={props.id} onClick={props.delete}></i>
+      </div>
+    </div>
+  </div>
+);
+
+const HighPriority = (props) => (
+  <div className={props.hideItem ? 'panel panel-danger' : 'hide'}>
+    <div className={props.completed}>
+      <input type="checkbox" id={props.id} onClick={props.checkBox} />
+      {props.item}
+      <div className="icon">
+        <i className="fas fa-edit" id={props.id} onClick={props.edit}></i>
+        <i className="fas fa-trash-alt" id={props.id} onClick={props.delete}></i>
+      </div>
+    </div>
+  </div>
+);
 
 class EditTodo extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.handleEditTodoText = this.handleEditTodoText.bind(this);
@@ -72,60 +71,59 @@ class EditTodo extends Component {
   }
 
   handleUpdate() {
-      const toUpdate= {
-        priority: this.props.editPriority,
-        item: this.props.editText,
-      };
-      
-      this.props.updateButton(toUpdate);
+    const toUpdate = {
+      priority: this.props.editPriority,
+      item: this.props.editText,
+    };
+
+    this.props.updateButton(toUpdate);
   }
 
-
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <div className={this.props.panelType}>
-            <div className="panel-content">Description
-                <textarea className="update-todo-text" 
-                  type="text"
-                  value={this.props.editText} 
-                  onChange={this.handleEditTodoText}/>
-            </div>
-            <div className="panel-content">Priority
+          <div className="panel-content">Description
+                <textarea className="update-todo-text"
+              type="text"
+              value={this.props.editText}
+              onChange={this.handleEditTodoText} />
+          </div>
+          <div className="panel-content">Priority
                 <select className="update-todo-priority"
-                value={this.props.editPriority}
-                onChange={this.handleEditTodoPriority}>
-                  <option className="1" value="1">Low</option>
-                  <option className="2" value="2">Medium</option>
-                  <option className="3" value="3">High</option>
+              value={this.props.editPriority}
+              onChange={this.handleEditTodoPriority}>
+              <option className="1" value="1">Low</option>
+              <option className="2" value="2">Medium</option>
+              <option className="3" value="3">High</option>
             </select>
-            </div>
-            <div className="panel-content">
-              <div className="button">
-                <button className="update-todo"
+          </div>
+          <div className="panel-content">
+            <div className="button">
+              <button className="update-todo"
                 onClick={this.handleUpdate}>Save</button>
-              </div>
             </div>
           </div>
+        </div>
       </div>
     );
   }
 }
 
-class ViewTodo extends Component { 
-  constructor(props){
+class ViewTodo extends Component {
+  constructor(props) {
     super(props);
-    
+
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
     this.handleEditItem = this.handleEditItem.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
   }
 
-  handleDeleteItem(e){
+  handleDeleteItem(e) {
     this.props.delete(e.target.id);
   }
 
-  handleEditItem(e){
+  handleEditItem(e) {
     this.props.edit(e.target.id);
   }
 
@@ -138,74 +136,75 @@ class ViewTodo extends Component {
     let i = 0;
 
     this.props.list.forEach((item) => {
-      if(item.priority == 1){
+      if (item.priority == 1) {
         priorityList.push(
-        <LowPriority
-        item={item.item}
-        key={i}
-        id={i}
-        delete={this.handleDeleteItem}
-        edit={this.handleEditItem}
-        hideItem={this.props.hideItem}
-        checkBox={this.handleCheck}
-        completed={item.completed}/>
-      );
-      i++;}else if (item.priority == 2) {
-        priorityList.push(
-        <MediumPriority
-        item={item.item}
-        key={i}
-        id={i}
-        delete={this.handleDeleteItem}
-        edit={this.handleEditItem}
-        hideItem={this.props.hideItem}
-        checkBox={this.handleCheck}
-        completed={item.completed}/>
-      );
-      i++;}else if (item.priority == 3) {
-        priorityList.push(
-        <HighPriority
-        item={item.item}
-        key={i}
-        id={i}
-        delete={this.handleDeleteItem}
-        edit={this.handleEditItem}
-        hideItem={this.props.hideItem}
-        checkBox={this.handleCheck}
-        completed={item.completed}/>
+          <LowPriority
+            item={item.item}
+            key={i}
+            id={i}
+            delete={this.handleDeleteItem}
+            edit={this.handleEditItem}
+            hideItem={this.props.hideItem}
+            checkBox={this.handleCheck}
+            completed={item.completed} />
         );
-      i++;}
+        i++;
+      } else if (item.priority == 2) {
+        priorityList.push(
+          <MediumPriority
+            item={item.item}
+            key={i}
+            id={i}
+            delete={this.handleDeleteItem}
+            edit={this.handleEditItem}
+            hideItem={this.props.hideItem}
+            checkBox={this.handleCheck}
+            completed={item.completed} />
+        );
+        i++;
+      } else if (item.priority == 3) {
+        priorityList.push(
+          <HighPriority
+            item={item.item}
+            key={i}
+            id={i}
+            delete={this.handleDeleteItem}
+            edit={this.handleEditItem}
+            hideItem={this.props.hideItem}
+            checkBox={this.handleCheck}
+            completed={item.completed} />
+        );
+        i++;
+      }
     });
 
-    return(
-     <div className='col-md-8'>
-       <div className='panel panel-default'>
-         <div className='panel-heading'>View Todos</div>
-         <div>
-           <FirstPanel 
-           hide={this.props.hideStart} 
-           />
-           {priorityList}
-         </div>
-         <div className={this.props.editItem ? 'edit' : 'hide'}>
-            <EditTodo 
-            editText={this.props.editTodo}
-            editPriority={this.props.editPriority}
-            updateButton={this.props.update}
-            handleEditText={this.props.handleEditText}
-            handleEditPriority={this.props.handleEditPriority}
-            panelType={this.props.panelType}
-          
+    return (
+      <div className='col-md-8'>
+        <div className='panel panel-default'>
+          <div className='panel-heading'>View Todos</div>
+          <div>
+            <FirstPanel
+              hide={this.props.hideStart}
             />
-         </div>
-       </div>
-     </div>
-   );
+            {priorityList}
+          </div>
+          <div className={this.props.editItem ? 'edit' : 'hide'}>
+            <EditTodo
+              editText={this.props.editTodo}
+              editPriority={this.props.editPriority}
+              updateButton={this.props.update}
+              handleEditText={this.props.handleEditText}
+              handleEditPriority={this.props.handleEditPriority}
+              panelType={this.props.panelType}   />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
 class AddTodo extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.handleAddTodoText = this.handleAddTodoText.bind(this);
@@ -222,51 +221,50 @@ class AddTodo extends Component {
   }
 
   handleAddButton() {
-    const toAdd= {
+    const toAdd = {
       priority: this.props.todoPriority,
       item: this.props.todoText,
       completed: '',
     };
-    
+
     this.props.toAdd(toAdd);
   }
-  
-  render(){
 
-    return(
-        <div className='col-md-4'>
-          <div className='panel panel-default'>
-            <div className="panel-heading">Add New Todo
+  render() {
+    return (
+      <div className='col-md-4'>
+        <div className='panel panel-default'>
+          <div className="panel-heading">Add New Todo
             </div>
-            <div className="panel-content">I want to..
-                <textarea className="create-todo-text" 
-                  type="text"
-                  placeholder="Enter a todo item"
-                  value={this.props.todoText} 
-                  onChange={this.handleAddTodoText}/>
-            </div>
-            <div className="panel-content">How much of a priority is this?
+          <div className="panel-content">I want to..
+                <textarea className="create-todo-text"
+              type="text"
+              placeholder="Enter a todo item"
+              value={this.props.todoText}
+              onChange={this.handleAddTodoText} />
+          </div>
+          <div className="panel-content">How much of a priority is this?
                 <select className="create-todo-priority"
-                value={this.props.todoPriority}
-                onChange={this.handleTodoPriority}>
-                  <option className="0" value="0">Select Priority</option>
-                  <option className="1" value="1">Low</option>
-                  <option className="2" value="2">Medium</option>
-                  <option className="3" value="3">High</option>
+              value={this.props.todoPriority}
+              onChange={this.handleTodoPriority}>
+              <option className="0" value="0">Select Priority</option>
+              <option className="1" value="1">Low</option>
+              <option className="2" value="2">Medium</option>
+              <option className="3" value="3">High</option>
             </select>
-            </div>
-            <div className="panel-footer">
-              <button className="create-todo"
-                onClick={this.handleAddButton}>Add</button>
-            </div>
+          </div>
+          <div className="panel-footer">
+            <button className="create-todo"
+              onClick={this.handleAddButton}>Add</button>
           </div>
         </div>
+      </div>
     );
   }
 }
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -292,13 +290,13 @@ class App extends Component {
     this.handleEditTodoPriority = this.handleEditTodoPriority.bind(this);
     this.handleCheckBox = this.handleCheckBox.bind(this);
   }
-  
+
   handleCheckBox(itemId) {
     let array = [...this.state.PriorityList];
 
-    if(array[itemId].completed == '') {
+    if (array[itemId].completed == '') {
       array[itemId].completed = 'completed';
-    }else{
+    } else {
       array[itemId].completed = '';
     }
 
@@ -311,7 +309,7 @@ class App extends Component {
     this.setState({
       AddTodoText: todoText,
     });
- }
+  }
 
   handleTodoPriority(todoPriority) {
     this.setState({
@@ -332,42 +330,42 @@ class App extends Component {
   }
 
   handleAddButton(toAdd) {
-    if(toAdd.priority == 0 || toAdd.item.length == 0 || !toAdd.item.trim()){
+    if (toAdd.priority == 0 || toAdd.item.length == 0 || !toAdd.item.trim()) {
       return;
-    }else {
+    } else {
       this.setState({
         Start: false,
         PriorityList: [...this.state.PriorityList, toAdd],
         AddTodoText: '',
         CreateTodoPriority: 0,
-    });
+      });
+    }
   }
-}
 
   handleDelete(toDelete) {
     var array = [...this.state.PriorityList];
-    if(toDelete !== -1) {
+    if (toDelete !== -1) {
       array.splice(toDelete, 1);
       this.setState({
         PriorityList: array
       })
     }
 
-    if(!array || !array.length){
+    if (!array || !array.length) {
       this.setState({
         Start: true,
       })
     }
   }
 
-  handleEdit(itemId){
+  handleEdit(itemId) {
     let panelType = '';
 
-    if(this.state.PriorityList[itemId].priority == 1){
+    if (this.state.PriorityList[itemId].priority == 1) {
       panelType = 'panel panel-success';
-    }else if (this.state.PriorityList[itemId].priority == 2){
+    } else if (this.state.PriorityList[itemId].priority == 2) {
       panelType = 'panel panel-warning';
-    }else {
+    } else {
       panelType = 'panel panel-danger';
     }
 
@@ -385,37 +383,38 @@ class App extends Component {
     })
   }
 
-  handleUpdate(toUpdate){
-    var array = [...this.state.PriorityList];
-    
+  handleUpdate(toUpdate) {
+    let array = [...this.state.PriorityList];
+    let completed = array[this.state.ItemId].completed;
+
     this.setState(prevState => ({
       HideItem: !prevState.HideItem
     }));
     this.setState(prevState => ({
       EditItem: !prevState.EditItem
     }));
-
+    
     array[this.state.ItemId] = toUpdate;
+    toUpdate.completed = completed;
 
     this.setState({
       PriorityList: array,
     });
   }
-  
+
   render() {
-  
     return (
       <div className='container'>
         <div className='row'>
           <Heading />
           <AddTodo
-            todoText={this.state.AddTodoText} 
+            todoText={this.state.AddTodoText}
             onTodoTextChange={this.handleAddTodoText}
             todoPriority={this.state.CreateTodoPriority}
-            onTodoPriorityChange={this.handleTodoPriority} 
+            onTodoPriorityChange={this.handleTodoPriority}
             toAdd={this.handleAddButton}
-            />
-            <ViewTodo
+          />
+          <ViewTodo
             list={this.state.PriorityList}
             hideStart={this.state.Start}
             delete={this.handleDelete}
@@ -429,8 +428,8 @@ class App extends Component {
             handleEditPriority={this.handleEditTodoPriority}
             panelType={this.state.PanelType}
             checkBox={this.handleCheckBox}
-            
-             />
+
+          />
         </div>
 
       </div>
