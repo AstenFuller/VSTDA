@@ -84,7 +84,7 @@ h3 {
 .panel.panel-success, .panel.panel-warning, .panel.panel-danger {
   padding: 5px;
   border-radius: 0;
-  margin-bottom: 0;
+  margin: 1px;
   width: 100%;
 }
 
@@ -115,22 +115,45 @@ input[type=checkbox] {
   width: 100%;
 }
 
-.create-todo-priority {
-  font-weight: normal;
-  width: 100%;
-  height: 2em;
-}
-
 .panel-content {
   font-weight: bold;
   margin: 1em;
 }
 
 textarea {
+  color: black;
   font-weight: normal;
   padding: 5px 10px 5px 10px;
 }
 
 h4, p {
   margin: 0;
+}
+
+select {
+  color: black;
+  font-weight: normal;
+  width: 100%;
+  height: 2em;
+}
+
+select.update-todo-priority {
+  width: 30%;
+  display: block;
+}
+
+.button {
+  text-align: right;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.update-todo {
+  border-radius: 10px;
+  background: #1cd83e;
+  color: white;
+  height: 2.5em;
+  width: 10%;
 }
